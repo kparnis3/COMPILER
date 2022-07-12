@@ -1,0 +1,3 @@
+/home/kian/git_workspace/COMPILER/TinyLang/build/CMakeFiles/rebuild_cache.dir
+/home/kian/git_workspace/COMPILER/TinyLang/build/CMakeFiles/edit_cache.dir
+/home/kian/git_workspace/COMPILER/TinyLang/build/CMakeFiles/Tiny.dir

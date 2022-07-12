@@ -1,0 +1,142 @@
+#define ERROR 34
+
+enum myCharacters // Character / {Ascii value}
+{
+    xFIRST=0,
+    xLETTER, // [a-z][A-Z] {65-90, 97-122}
+    xDIGIT, // 0 - 9 {48 - 57}
+    
+    xMULTIPLY, // * {42}
+    xDIVIDE, // / {47}
+    xSUBTRACT, // - {45}
+    xADD, // + {43}
+    xGREATER, // > {62}
+    xLESS, // < {60}
+    xEQUAL, // = {61}
+    xNOT, // ! {33}
+
+    xUNDERSCORE, // _ {95}
+    xCOMMA, // , {44}
+    xDOT, // . {46}
+    xLBRACKET, // ( {40}
+    xRBRACKET, // ) {41}
+    xSCOLON, // ; {59}
+    xCOLON, // : {58}
+    xSPACE, // " " {32}
+    xLCURLY, // { {123}
+    xRCURLY, // } {125}
+    xQUOTE, // " {34}
+    xNL, // \n
+
+    xOTHER, // NOT IN LANGUAGE
+    
+};
+
+enum MyTokens
+{   
+    tSTART = 0,
+    tIDENTIFY,
+    tSPACE,
+    tLCURLY,
+    tRCURLY,
+    tLBRACKET,
+    tRBRACKET,
+    tDIGIT,
+    tDD,
+    tFLOAT,
+    tLESSTHAN,
+    tLORE,
+    tGREATER,
+    tGORE,
+    tEQUAL,
+    tRELA,
+    tNOT,
+    tNOTE,
+    tCOMMA,
+    tCOLON,
+    tSCOLON,
+    tADD,
+    tSUBTRACT,
+    tSTAR,
+
+    tSLASH, //Comments
+    tCOMMENTB,
+    tCOMMENT,
+    tCOMMENTNL,
+    tECOMMENTB,
+    tECOMMENTSTAR,
+    tECOMMENT, 
+
+    tARROW, 
+    
+    tSLitB, //String Literal "  ....  
+    tSLit, //S33 " .... "
+
+    //Reserved 
+    tDOUBLE,
+    tBOOLEAN,
+    tINT,
+    tCHAR,
+    tTRUE,
+    tFALSE,
+    tLET,
+    tPRINT,
+    tRETURN,
+    tIF,
+    tELSE,
+    tFOR,
+    tWHILE,
+    tFUNCTION,
+    tAND,
+    tOR, //tNOT removed
+    tEND,
+    tN
+};
+
+const int stateTable[][34] = 
+{
+    //xFIRST, xLETTER,  xDIGIT,   xMULTIPLY, xDIVIDE, xSUBTRACT,xADD,  xGREATER,   xLESS,    xEQUAL, xNOT, xUNDERSCORE, xCOMMA, xDOT,  xLBRACKET, xRBRACKET, xSCOLON, xCOLON, xSPACE,  xRCURLY, xLCURLY  xQUOTE xNL    xOTHER
+    { ERROR, tIDENTIFY, tDIGIT,    tSTAR,   tSLASH,   tSUBTRACT,tADD,   tGREATER,  tLESSTHAN, tEQUAL, tNOT,   tIDENTIFY, tCOMMA, ERROR, tLBRACKET, tRBRACKET,tSCOLON, tCOLON, tSPACE,  tRCURLY, tLCURLY, tSLitB, tSPACE, ERROR}, //S0
+    { ERROR, tIDENTIFY, tIDENTIFY, ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,  tIDENTIFY, ERROR,  ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S1
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  tSPACE,  ERROR,    ERROR,  ERROR, tSPACE, ERROR}, //S2
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S3
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S4
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S5
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S6
+    { ERROR,   ERROR,   tDIGIT,    ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, tDD,    ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S7
+    { ERROR,   ERROR,   tFLOAT,    ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S8
+    { ERROR,   ERROR,   tFLOAT,    ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S9
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     tLORE, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S10
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S11
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     tGORE, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S12
+
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S13
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  tGORE,     ERROR,     tRELA, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S14
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S15
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     tNOTE, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S16
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S17
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S18
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S19
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S20
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S21
+
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR, ERROR,  tARROW,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S22
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S23
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S24
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S25
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S26
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S27
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S28
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S29
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S30
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,   ERROR,     ERROR, ERROR,  ERROR,     ERROR,    ERROR,   ERROR,  ERROR,   ERROR,    ERROR,  ERROR, ERROR, ERROR}, //S31
+    //xFIRST, xLETTER,  xDIGIT,   xMULTIPLY, xDIVIDE, xSUBTRACT,xADD,  xGREATER,   xLESS,     xEQUAL, xNOT, xUNDERSCORE, xCOMMA, xDOT,  xLBRACKET, xRBRACKET, xSCOLON, xCOLON, xSPACE,  xRCURLY, xLCURLY  xQUOTE xNL    xOTHER
+    { ERROR,   tSLitB,  tSLitB,    tSLitB,   tSLitB,   tSLitB,  tSLitB, tSLitB,    tSLitB,    tSLitB,tSLitB, tSLitB,    tSLitB, tSLitB,  tSLitB,    tSLitB,    tSLitB,  tSLitB, tSLitB,   tSLitB,    tSLitB,  tSLit, ERROR, ERROR}, //S32
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,  ERROR,     ERROR,  ERROR,   ERROR,     ERROR,     ERROR,   ERROR,  ERROR,    ERROR,     ERROR,   ERROR, ERROR, ERROR}, //S33
+    { ERROR,   ERROR,   ERROR,     ERROR,    ERROR,     ERROR,  ERROR,  ERROR,     ERROR,     ERROR, ERROR,  ERROR,     ERROR,  ERROR,   ERROR,     ERROR,     ERROR,   ERROR,  ERROR,    ERROR,     ERROR,   ERROR, ERROR, ERROR}  // Error State 34
+
+};
+
+
+
+

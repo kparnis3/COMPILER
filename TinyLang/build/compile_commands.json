@@ -1,0 +1,37 @@
+[
+{
+  "directory": "/home/kian/git_workspace/COMPILER/TinyLang/build",
+  "command": "/bin/x86_64-linux-gnu-g++-10   -g -o CMakeFiles/Tiny.dir/Main.cpp.o -c /home/kian/git_workspace/COMPILER/TinyLang/Main.cpp",
+  "file": "/home/kian/git_workspace/COMPILER/TinyLang/Main.cpp"
+},
+{
+  "directory": "/home/kian/git_workspace/COMPILER/TinyLang/build",
+  "command": "/bin/x86_64-linux-gnu-g++-10   -g -o CMakeFiles/Tiny.dir/lexer.cpp.o -c /home/kian/git_workspace/COMPILER/TinyLang/lexer.cpp",
+  "file": "/home/kian/git_workspace/COMPILER/TinyLang/lexer.cpp"
+},
+{
+  "directory": "/home/kian/git_workspace/COMPILER/TinyLang/build",
+  "command": "/bin/x86_64-linux-gnu-g++-10   -g -o CMakeFiles/Tiny.dir/Parser.cpp.o -c /home/kian/git_workspace/COMPILER/TinyLang/Parser.cpp",
+  "file": "/home/kian/git_workspace/COMPILER/TinyLang/Parser.cpp"
+},
+{
+  "directory": "/home/kian/git_workspace/COMPILER/TinyLang/build",
+  "command": "/bin/x86_64-linux-gnu-g++-10   -g -o CMakeFiles/Tiny.dir/XMLVisitorDesign.cpp.o -c /home/kian/git_workspace/COMPILER/TinyLang/XMLVisitorDesign.cpp",
+  "file": "/home/kian/git_workspace/COMPILER/TinyLang/XMLVisitorDesign.cpp"
+},
+{
+  "directory": "/home/kian/git_workspace/COMPILER/TinyLang/build",
+  "command": "/bin/x86_64-linux-gnu-g++-10   -g -o CMakeFiles/Tiny.dir/SemanticVisitorDesign.cpp.o -c /home/kian/git_workspace/COMPILER/TinyLang/SemanticVisitorDesign.cpp",
+  "file": "/home/kian/git_workspace/COMPILER/TinyLang/SemanticVisitorDesign.cpp"
+},
+{
+  "directory": "/home/kian/git_workspace/COMPILER/TinyLang/build",
+  "command": "/bin/x86_64-linux-gnu-g++-10   -g -o CMakeFiles/Tiny.dir/SymTable.cpp.o -c /home/kian/git_workspace/COMPILER/TinyLang/SymTable.cpp",
+  "file": "/home/kian/git_workspace/COMPILER/TinyLang/SymTable.cpp"
+},
+{
+  "directory": "/home/kian/git_workspace/COMPILER/TinyLang/build",
+  "command": "/bin/x86_64-linux-gnu-g++-10   -g -o CMakeFiles/Tiny.dir/InterpreterPass.cpp.o -c /home/kian/git_workspace/COMPILER/TinyLang/InterpreterPass.cpp",
+  "file": "/home/kian/git_workspace/COMPILER/TinyLang/InterpreterPass.cpp"
+}
+]

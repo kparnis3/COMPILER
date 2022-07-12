@@ -1,0 +1,9 @@
+fn printLoop (n:int) -> int{
+    for(let i:int=0; i<n; i=i+1)
+    {
+        print i;
+    }
+    return 0;
+}
+
+let y:int = printLoop(10);
