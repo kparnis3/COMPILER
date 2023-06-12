@@ -85,3 +85,38 @@ more times. For example, a Block consists of zero or more Statement enclosed in 
   - | 〈Block〉
 - 〈Block〉 ::= ‘{’ { 〈Statement〉 } ‘}’
 - 〈Program〉 ::= { 〈Statement〉 }
+
+## Constructing the Transition Table
+
+When deciding what the DFA of the program will look like two important factors had to be
+taken:
+1.  What the actual accepted characters are.
+2.  What tokens are to be considered.
+
+For ease of reading enum classes were created for these two factors. To better understand
+which tokens/characters these would be a DFA was drawn which is derived from the
+specifications of the EBNF of what the final DFA should look like and thus what all the
+characters and tokens are. The following is the DFA considered, the DFA has been spilt into
+parts due to its scale but, every state emanates from the same starting node S0.
+
+![1](https://github.com/kparnis3/COMPILER/assets/81303628/17984dc1-47c7-4d01-80f8-ed144d76eeb3)
+![2](https://github.com/kparnis3/COMPILER/assets/81303628/1064ec56-6fdf-431e-891e-c47a1c9039e5)
+![3](https://github.com/kparnis3/COMPILER/assets/81303628/7e859038-b11a-4cdb-a3ee-13a14cbd1d1d)
+
+## The Abstract Syntax Tree
+
+The (AST) was coded as a tree, being stored as a vector of shared
+pointers which point to a particular node’s child. A class hierarchy was used to represent each
+AST which allows for storage for operators, types, identifier names etc. as well as allowing
+the visitor design patter to traverse these classes. Shared Pointers are used for ease of
+deletion, since no loops will be found within the tree, we can simply delete the starting
+ASTNode and the rest of the tree will henceforth be deleted, preventing any memory leaks
+from occurring.
+
+![4](https://github.com/kparnis3/COMPILER/assets/81303628/881e5157-b13b-4ef0-afb3-d725b7ce19dc)
+![6](https://github.com/kparnis3/COMPILER/assets/81303628/13c0efa6-60cf-4a80-a040-8bfcdaf948b0)
+
+
+
+
+
