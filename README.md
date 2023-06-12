@@ -1,4 +1,4 @@
-### Compiler Theory and Practice assignment 2022
+# Compiler Theory and Practice assignment 2022
 
 ## Description
 
