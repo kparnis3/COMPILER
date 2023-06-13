@@ -98,11 +98,11 @@ which tokens/characters these would be a DFA was drawn which is derived from the
 specifications of the EBNF of what the final DFA should look like and thus what all the
 characters and tokens are. The following is the DFA considered, the DFA has been spilt into
 parts due to its scale but, every state emanates from the same starting node S0.
-
-![1](https://github.com/kparnis3/COMPILER/assets/81303628/17984dc1-47c7-4d01-80f8-ed144d76eeb3)
-![2](https://github.com/kparnis3/COMPILER/assets/81303628/1064ec56-6fdf-431e-891e-c47a1c9039e5)
-![3](https://github.com/kparnis3/COMPILER/assets/81303628/7e859038-b11a-4cdb-a3ee-13a14cbd1d1d)
-
+<p align="center">
+<img src="https://github.com/kparnis3/COMPILER/assets/81303628/17984dc1-47c7-4d01-80f8-ed144d76eeb3" width="400"> <br>
+<img src="https://github.com/kparnis3/COMPILER/assets/81303628/1064ec56-6fdf-431e-891e-c47a1c9039e5" width="400"> <br>
+<img src="https://github.com/kparnis3/COMPILER/assets/81303628/7e859038-b11a-4cdb-a3ee-13a14cbd1d1d" width="400"> 
+</p>
 ## The Abstract Syntax Tree
 
 The (AST) was coded as a tree, being stored as a vector of shared
