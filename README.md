@@ -103,6 +103,7 @@ parts due to its scale but, every state emanates from the same starting node S0.
 <img src="https://github.com/kparnis3/COMPILER/assets/81303628/1064ec56-6fdf-431e-891e-c47a1c9039e5" width="400"> <br>
 <img src="https://github.com/kparnis3/COMPILER/assets/81303628/7e859038-b11a-4cdb-a3ee-13a14cbd1d1d" width="400"> 
 </p>
+
 ## The Abstract Syntax Tree
 
 The (AST) was coded as a tree, being stored as a vector of shared
